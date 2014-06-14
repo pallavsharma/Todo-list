@@ -57,3 +57,8 @@
 	group :production do
 	 gem 'pg'
 	end	 
+
+	gem 'rails_12factor', group: :production
+
+	# Added ruby version for Heroku
+	ruby "2.1.1"
