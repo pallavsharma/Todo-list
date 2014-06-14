@@ -8,7 +8,7 @@
 	# gem 'sqlite3'
 
 	# Use postgresql for deploying app to heroku
-	gem 'pg'
+	# gem 'pg'
 
 	# Use SCSS for stylesheets
 	gem 'sass-rails', '~> 4.0.3'
@@ -54,6 +54,6 @@
 	# Use debugger
 	# gem 'debugger', group: [:development, :test]
 
-	  group :production do
-	   	 gem 'pg'
-		  end	 
+	group :production do
+	 gem 'pg'
+	end	 
