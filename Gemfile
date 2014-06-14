@@ -11,6 +11,9 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass-extras'
 gem 'bootstrap-sass', '~> 3.1.1'
 
+# Use Figaro gem in order to protect rails configuration/passwords
+gem 'figaro'
+
 gem 'cancan'
 gem 'devise'
 gem 'activeadmin', github: 'gregbell/active_admin'
