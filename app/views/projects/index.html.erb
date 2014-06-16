@@ -5,6 +5,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>P.No.</th>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:projtitle) %></th>
       <th><%= model_class.human_attribute_name(:projdesc) %></th>
@@ -13,8 +14,12 @@
     </tr>
   </thead>
   <tbody>
+
+    <% @c = 1 %>
+
     <% @projects.each do |project| %>
     <tr>
+      <td><%= @c.inspect %></td>
       <td><%= project.id %></td>
       <td><%= project.projtitle %></td>
       <td><%= project.projdesc %></td>
@@ -27,7 +32,11 @@
         <%= glyph 'pencil' %>
         <%- end -%>
         <%= link_to project_path(project), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+
+	<% @c = @c+1 %>
+
         <%= glyph 'remove' %>
+
         <%- end -%>
       </td>
     </tr>
