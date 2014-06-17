@@ -1,10 +1,11 @@
 class ProjectsController < ApplicationController
   before_filter :auth_user
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  # load_and_authorize_resource
 
   # GET /projects
   # GET /projects.json
-  
+
   def index
     @user = User.find(current_user.id)
     @projects = @user.projects 
@@ -13,6 +14,11 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @project = Project.find(params[:id])
+    unless @project.user_id == current_user.id
+      flash[:error] = "unauthorized"
+      redirect_to :projects
+    end
   end
 
   # GET /projects/new
@@ -74,4 +80,9 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:projtitle, :projdesc)
   end
+
+  # def require_authorization
+  #   redirect_to projects_url unless current_user.id != project.user_id
+  # end
+
 end

@@ -9,5 +9,9 @@ class ApplicationController < ActionController::Base
     # else
     redirect_to new_user_session_url unless user_signed_in?
   end
+
+  # rescue_from CanCan::AccessDenied do | exception |
+  #   redirect_to projects_url, alert: exception.message
   # end
+  
 end
