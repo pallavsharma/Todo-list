@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
   def index
     @user = User.find(current_user.id)
     @comments = @user.comments
+    redirect_to :back
   end
 
   # GET /comments/1
@@ -21,7 +22,9 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
-    # @comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
+    @project = Project.find(@comment.project_id)
+    # render "/projects/show"
   end
 
   # POST /comments
