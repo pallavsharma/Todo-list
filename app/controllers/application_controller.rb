@@ -13,5 +13,9 @@ class ApplicationController < ActionController::Base
   # rescue_from CanCan::AccessDenied do | exception |
   #   redirect_to projects_url, alert: exception.message
   # end
-  
+
+  def comment_params
+    params.require(:comment).permit(:content, :comment_project_id, :comment_user_id)
+  end
+ 
 end

@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
 
   def index
+    # @comment = Comment.new
     @user = User.find(current_user.id)
     @projects = @user.projects 
   end
@@ -14,7 +15,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @comment = Comment.new
     @project = Project.find(params[:id])
+    @comments = @project.comments
     unless @project.user_id == current_user.id
       flash[:error] = "unauthorized"
       redirect_to :projects
@@ -75,14 +78,13 @@ class ProjectsController < ApplicationController
   def set_project
     @project = Project.find(params[:id])
   end
-
+  
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
     params.require(:project).permit(:projtitle, :projdesc)
   end
 
-  # def require_authorization
-  #   redirect_to projects_url unless current_user.id != project.user_id
-  # end
-
+  def comment_params
+    params.require(:comment).permit(:content, :project_id, :user_id)
+  end
 end
