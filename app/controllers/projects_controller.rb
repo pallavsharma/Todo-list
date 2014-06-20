@@ -15,13 +15,21 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @comment = Comment.new
     @project = Project.find(params[:id])
     @comments = @project.comments
+
+    if params[:comment_id].present?
+      @comment = Comment.find(params[:comment_id])
+    else
+      @comment = Comment.new
+    end
+
     unless @project.user_id == current_user.id
       flash[:error] = "unauthorized"
       redirect_to :projects
     end
+
+
   end
 
   # GET /projects/new

@@ -6,12 +6,17 @@ class CommentsController < ApplicationController
   def index
     @user = User.find(current_user.id)
     @comments = @user.comments
-    redirect_to :back
+    @comment = Comment.find(params[:id])
+    # redirect_to :back
   end
 
   # GET /comments/1
   # GET /comments/1.json
   def show
+    @project = Project.find(@comment.project_id)
+    @user = User.find(current_user.id)
+    @comments = @user.comments
+    render "/projects/show"
   end
 
   # GET /comments/new
@@ -22,8 +27,10 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
-    @comment = Comment.find(params[:id])
-    @project = Project.find(@comment.project_id)
+    @user = User.find(current_user.id)
+    @comments = @user.comments
+    # @comment = Comment.find(params[:id])
+    # @project = Project.find(@comment.project_id)
     # render "/projects/show"
   end
 
