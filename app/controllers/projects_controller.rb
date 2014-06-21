@@ -46,6 +46,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.user = current_user
+
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -56,7 +57,6 @@ class ProjectsController < ApplicationController
       end
     end
   end
-
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
@@ -89,7 +89,7 @@ class ProjectsController < ApplicationController
   
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
-    params.require(:project).permit(:projtitle, :projdesc)
+    params.require(:project).permit(:projtitle, :projdesc, :photo, :attachfile)
   end
 
   def comment_params

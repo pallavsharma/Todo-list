@@ -22,6 +22,8 @@
 	gem 'devise'
 	gem 'activeadmin', github: 'gregbell/active_admin'
 
+	# Using paperclip gem
+	gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 	# Use Uglifier as compressor for JavaScript assets
 	gem 'uglifier', '>= 1.3.0'
